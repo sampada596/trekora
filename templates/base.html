@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Trekora - Trekking & Adventures in Nepal{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'home' %}" class="logo">Trekora</a>
+
+            <nav class="nav-links">
+                <a href="#">Adventures</a>
+                <a href="#">Travel Info</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </nav>
+
+            <div class="nav-auth">
+                <a href="#" class="btn-outline">Login</a>
+                <a href="#" class="btn-filled">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Trekora</h3>
+                <p>We don't just travel, we experience life.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Our Adventures</h4>
+                <a href="#">Everest Base Camp</a>
+                <a href="#">Annapurna Circuit</a>
+                <a href="#">Mera Peak</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <a href="#">Our Story</a>
+                <a href="#">Get in Touch</a>
+                <a href="#">Meet the Team</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+
+        <p class="footer-bottom">&copy; 2026 Trekora. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
