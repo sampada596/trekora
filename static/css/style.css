@@ -262,3 +262,9 @@ body {
     font-size: 14px;
     margin-top: 4px;
 }
+
+a.trip-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

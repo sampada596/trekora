@@ -15,37 +15,19 @@
     <p class="section-sub">Discover the perfect trip for you from our extensive selection.</p>
 
     <div class="trip-grid">
-
-        <div class="trip-card">
-            <img src="{% static 'images/placeholder-trip.jpg' %}" alt="Everest Base Camp">
+        {% for trip in featured_trips %}
+        <a href="#" class="trip-card">
+            <img src="{{ trip.cover_image.url }}" alt="{{ trip.title }}">
             <div class="trip-info">
-                <span class="trip-category">Trekking</span>
-                <h3>Everest Base Camp</h3>
-                <p class="trip-meta">Everest &bull; 16 days</p>
-                <p class="trip-price">Starts at $1,450</p>
+                <span class="trip-category">{{ trip.get_category_display }}</span>
+                <h3>{{ trip.title }}</h3>
+                <p class="trip-meta">{{ trip.region }} &bull; {{ trip.duration }}</p>
+                <p class="trip-price">Starts at ${{ trip.price }}</p>
             </div>
-        </div>
-
-        <div class="trip-card">
-            <img src="{% static 'images/placeholder-trip.jpg' %}" alt="Annapurna Circuit">
-            <div class="trip-info">
-                <span class="trip-category">Trekking</span>
-                <h3>Annapurna Circuit</h3>
-                <p class="trip-meta">Annapurna &bull; 20 days</p>
-                <p class="trip-price">Starts at $1,200</p>
-            </div>
-        </div>
-
-        <div class="trip-card">
-            <img src="{% static 'images/placeholder-trip.jpg' %}" alt="Upper Mustang">
-            <div class="trip-info">
-                <span class="trip-category">Tour</span>
-                <h3>Upper Mustang</h3>
-                <p class="trip-meta">Mustang &bull; 15 days</p>
-                <p class="trip-price">Starts at $1,800</p>
-            </div>
-        </div>
-
+        </a>
+        {% empty %}
+        <p>No featured trips yet — add some in the admin panel!</p>
+        {% endfor %}
     </div>
 </section>
 
