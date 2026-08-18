@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Trekora - Home{% endblock %}
 
 {% block content %}
@@ -8,6 +8,69 @@
     <h1>Discover the Himalayas.</h1>
     <p>Leave the planning to us, embrace the magic of Nepal with Trekora.</p>
     <a href="#" class="btn-filled">Start Your Adventure</a>
+</section>
+
+<section class="featured-trips">
+    <h2>Featured Trips</h2>
+    <p class="section-sub">Discover the perfect trip for you from our extensive selection.</p>
+
+    <div class="trip-grid">
+
+        <div class="trip-card">
+            <img src="{% static 'images/placeholder-trip.jpg' %}" alt="Everest Base Camp">
+            <div class="trip-info">
+                <span class="trip-category">Trekking</span>
+                <h3>Everest Base Camp</h3>
+                <p class="trip-meta">Everest &bull; 16 days</p>
+                <p class="trip-price">Starts at $1,450</p>
+            </div>
+        </div>
+
+        <div class="trip-card">
+            <img src="{% static 'images/placeholder-trip.jpg' %}" alt="Annapurna Circuit">
+            <div class="trip-info">
+                <span class="trip-category">Trekking</span>
+                <h3>Annapurna Circuit</h3>
+                <p class="trip-meta">Annapurna &bull; 20 days</p>
+                <p class="trip-price">Starts at $1,200</p>
+            </div>
+        </div>
+
+        <div class="trip-card">
+            <img src="{% static 'images/placeholder-trip.jpg' %}" alt="Upper Mustang">
+            <div class="trip-info">
+                <span class="trip-category">Tour</span>
+                <h3>Upper Mustang</h3>
+                <p class="trip-meta">Mustang &bull; 15 days</p>
+                <p class="trip-price">Starts at $1,800</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="about-preview">
+    <div class="about-text">
+        <span class="section-label">About Us</span>
+        <h2>Why Trekora?</h2>
+        <p>Because here, adventure isn't just about pushing your limits. It's about awakening the explorer within — the one who thrills at the call of the mountains.</p>
+        <a href="#" class="btn-outline-dark">Learn More</a>
+    </div>
+
+    <div class="about-stats">
+        <div class="stat">
+            <h3>500+</h3>
+            <p>Happy Customers</p>
+        </div>
+        <div class="stat">
+            <h3>120+</h3>
+            <p>Trips Completed</p>
+        </div>
+        <div class="stat">
+            <h3>10+</h3>
+            <p>Years in Business</p>
+        </div>
+    </div>
 </section>
 
 {% endblock %}
