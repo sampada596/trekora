@@ -21,8 +21,16 @@
             </nav>
 
             <div class="nav-auth">
-                <a href="#" class="btn-outline">Login</a>
-                <a href="#" class="btn-filled">Sign Up</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="btn-outline">{{ user.username }}</a>
+                    <form action="{% url 'logout' %}" method="post" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-filled">Log Out</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn-outline">Login</a>
+                    <a href="{% url 'signup' %}" class="btn-filled">Sign Up</a>
+                {% endif %}
             </div>
         </div>
     </header>

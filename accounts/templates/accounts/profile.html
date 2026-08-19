@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}My Profile - Trekora{% endblock %}
+{% block content %}
+<section class="auth-page">
+    <h1>Hello, {{ user.username }}</h1>
+    <p>Email: {{ user.email }}</p>
+    <form action="{% url 'logout' %}" method="post" class="logout-form">
+        {% csrf_token %}
+        <button type="submit" class="btn-outline-dark">Log Out</button>
+    </form>
+</section>
+{% endblock %}
