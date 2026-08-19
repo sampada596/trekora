@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Booking Confirmed - Trekora{% endblock %}
+{% block content %}
+<section class="auth-page">
+    <h1>🎉 Booking Confirmed!</h1>
+    <p>Thank you for booking with Trekora. A confirmation will appear in your profile shortly.</p>
+    <a href="{% url 'profile' %}" class="btn-filled">View My Bookings</a>
+</section>
+{% endblock %}

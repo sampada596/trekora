@@ -368,6 +368,14 @@ a.trip-card {
     color: #f4a300;
 }
 
+.auth-page a.btn-filled {
+    color: #0d1b2a;
+}
+
+.auth-page a.btn-outline-dark {
+    color: #0d1b2a;
+}
+
 .logout-form {
     display: inline;
 }

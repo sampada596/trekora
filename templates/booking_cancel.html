@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Booking Cancelled - Trekora{% endblock %}
+{% block content %}
+<section class="auth-page">
+    <h1>Booking Cancelled</h1>
+    <p>Your payment was cancelled. No charge was made.</p>
+    <a href="{% url 'trip_list' %}" class="btn-outline-dark">Browse Adventures</a>
+</section>
+{% endblock %}
