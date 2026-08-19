@@ -17,4 +17,8 @@ def signup_view(request):
 
 @login_required
 def profile_view(request):
-    return render(request, 'accounts/profile.html')
+    bookings = request.user.bookings.all().order_by('-created_at')
+    context = {
+        'bookings': bookings,
+    }
+    return render(request, 'accounts/profile.html', context)

@@ -9,4 +9,26 @@
         <button type="submit" class="btn-outline-dark">Log Out</button>
     </form>
 </section>
+
+<section class="my-bookings">
+    <h2>My Bookings</h2>
+
+    {% if bookings %}
+    <div class="bookings-list">
+        {% for booking in bookings %}
+        <div class="booking-card">
+            <img src="{{ booking.trip.cover_image.url }}" alt="{{ booking.trip.title }}">
+            <div class="booking-info">
+                <h3>{{ booking.trip.title }}</h3>
+                <p>{{ booking.trip.region }} &bull; {{ booking.trip.duration }}</p>
+                <p class="booking-date">Booked on {{ booking.created_at|date:"M d, Y" }}</p>
+            </div>
+            <span class="booking-status status-{{ booking.status }}">{{ booking.get_status_display }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>You haven't booked any trips yet. <a href="{% url 'trip_list' %}">Browse adventures</a></p>
+    {% endif %}
+</section>
 {% endblock %}
