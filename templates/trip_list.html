@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Adventures - Trekora{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <h1>All Adventures</h1>
+    <p>Browse treks, tours, sightseeing trips and climbs across Nepal.</p>
+</section>
+
+<section class="listing-page">
+
+    <div class="filter-bar">
+        <a href="{% url 'trip_list' %}" class="filter-btn {% if not selected_category %}active{% endif %}">All</a>
+        {% for value, label in categories %}
+        <a href="?category={{ value }}" class="filter-btn {% if selected_category == value %}active{% endif %}">{{ label }}</a>
+        {% endfor %}
+    </div>
+
+    <div class="trip-grid">
+        {% for trip in trips %}
+        <a href="{% url 'trip_detail' trip.slug %}" class="trip-card">
+            <img src="{{ trip.cover_image.url }}" alt="{{ trip.title }}">
+            <div class="trip-info">
+                <span class="trip-category">{{ trip.get_category_display }}</span>
+                <h3>{{ trip.title }}</h3>
+                <p class="trip-meta">{{ trip.region }} &bull; {{ trip.duration }}</p>
+                <p class="trip-price">Starts at ${{ trip.price }}</p>
+            </div>
+        </a>
+        {% empty %}
+        <p>No trips found.</p>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}

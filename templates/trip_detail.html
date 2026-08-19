@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ trip.title }} - Trekora{% endblock %}
+
+{% block content %}
+
+<section class="trip-detail">
+    <img src="{{ trip.cover_image.url }}" alt="{{ trip.title }}" class="trip-detail-img">
+
+    <div class="trip-detail-body">
+        <span class="trip-category">{{ trip.get_category_display }}</span>
+        <h1>{{ trip.title }}</h1>
+        <p class="trip-meta">{{ trip.region }} &bull; {{ trip.duration }}</p>
+
+        <p class="trip-description">{{ trip.description }}</p>
+
+        <div class="trip-detail-price">
+            <h2>${{ trip.price }}</h2>
+            <a href="#" class="btn-filled">Book Now</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
