@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Trip, Booking
+from .models import Trip, Booking, Review
 
 @admin.register(Trip)
 class TripAdmin(admin.ModelAdmin):
@@ -11,3 +11,8 @@ class TripAdmin(admin.ModelAdmin):
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('user', 'trip', 'status', 'amount_paid', 'created_at')
     list_filter = ('status',)
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('user', 'trip', 'rating', 'created_at')
+    list_filter = ('rating',)

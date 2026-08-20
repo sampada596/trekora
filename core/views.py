@@ -7,6 +7,10 @@ from django.urls import reverse
 from .models import Trip, Booking
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+from django.db.models import Avg
+from .forms import ReviewForm
+from .models import Trip, Booking, Review
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -35,8 +39,38 @@ def trip_list(request):
 
 def trip_detail(request, slug):
     trip = get_object_or_404(Trip, slug=slug)
+    reviews = trip.reviews.all()
+    average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
+
+    user_has_reviewed = False
+    if request.user.is_authenticated:
+        user_has_reviewed = Review.objects.filter(user=request.user, trip=trip).exists()
+
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login')
+
+        if user_has_reviewed:
+            messages.error(request, "You've already reviewed this trip.")
+            return redirect('trip_detail', slug=trip.slug)
+
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.trip = trip
+            review.save()
+            messages.success(request, "Thanks for your review!")
+            return redirect('trip_detail', slug=trip.slug)
+    else:
+        form = ReviewForm()
+
     context = {
         'trip': trip,
+        'reviews': reviews,
+        'average_rating': average_rating,
+        'review_form': form,
+        'user_has_reviewed': user_has_reviewed,
     }
     return render(request, 'trip_detail.html', context)
 
