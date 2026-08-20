@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Blog - Trekora{% endblock %}
+{% block content %}
+
+<section class="page-header">
+    <h1>Trekora Blog</h1>
+    <p>Stories, tips, and inspiration from the trail.</p>
+</section>
+
+<section class="blog-listing">
+    <div class="blog-grid">
+        {% for post in posts %}
+        <a href="{% url 'post_detail' post.slug %}" class="blog-card">
+            <img src="{{ post.cover_image.url }}" alt="{{ post.title }}">
+            <div class="blog-card-info">
+                <h3>{{ post.title }}</h3>
+                <p class="blog-meta">{{ post.author.username }} &bull; {{ post.published_at|date:"M d, Y" }}</p>
+                <p class="blog-excerpt">{{ post.excerpt }}</p>
+            </div>
+        </a>
+        {% empty %}
+        <p>No blog posts yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
